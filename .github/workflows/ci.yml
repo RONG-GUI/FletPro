@@ -1,18 +1,3 @@
-# name: CI
-
-# on:
-#   push:
-#     branches: [ main ]   # 推送 main 分支时触发
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
-
-#       - name: Run hello
-#         run: echo "Hello from GitHub Actions!"
 name: Build Flet Windows App
 
 on:
