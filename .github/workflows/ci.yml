@@ -28,15 +28,16 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.29.2'   # 建议和本地一致
+          flutter-version: '3.29.2'
           channel: stable
 
-      # 5. 打包 Windows 应用（禁用 Rich Unicode 输出）
+      # 5. 打包 Windows 应用（通过环境变量解决 Unicode 问题）
       - name: Build Windows app
         run: |
           chcp 65001
           set PYTHONIOENCODING=utf-8
-          flet build windows --no-color
+          set RICH_NO_COLOR=1
+          flet build windows
 
       # 6. 上传打包结果（可下载）
       - name: Upload artifact
