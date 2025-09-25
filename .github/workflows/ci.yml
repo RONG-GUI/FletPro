@@ -33,13 +33,11 @@ jobs:
 
       # 5. 打包 Windows 应用
       - name: Build Windows app
-        run: |
-          flet build windows
+        run: flet build windows
 
       # 6. 上传打包结果（可下载）
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-build
           path: dist/**
-
