@@ -21,20 +21,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install --upgrade flet pyinstaller
 
-      # 先安装 Flutter
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.29.2'
           channel: stable
 
-      # 修改 webview_flutter_android 版本，必须在 Flutter 安装后
-      - name: Fix Dart version compatibility
-        run: |
-          flutter pub add webview_flutter_android@4.9.0
-          flutter pub get
-
-      # 打包 Windows 应用
       - name: Build Windows app
         run: cmd /C "chcp 65001 && set PYTHONIOENCODING=utf-8 && set FLET_NO_RICH=1 && flet build windows"
 
