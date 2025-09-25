@@ -33,7 +33,10 @@ jobs:
 
       # 5. 打包 Windows 应用
       - name: Build Windows app
-        run: flet build windows
+        run: |
+          chcp 65001
+          set PYTHONIOENCODING=utf-8
+          flet build windows
 
       # 6. 上传打包结果（可下载）
       - name: Upload artifact
