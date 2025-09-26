@@ -21,21 +21,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install --upgrade flet pyinstaller
 
-      - name: Install Flutter
+      - name: Install Flutter (Dart 3.9+)
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.29.2'
+          flutter-version: '3.31.0'
           channel: stable
 
-      # 临时创建 Flutter 项目，降级 webview_flutter_android
-      - name: Patch Flet Flutter dependencies
-        run: |
-          mkdir temp_flutter && cd temp_flutter
-          flutter create temp
-          cd temp
-          flutter pub add webview_flutter_android@4.9.0
-          flutter pub get
-          cd ../..
+      - name: Clear Flutter pub cache (防止旧依赖冲突)
+        run: flutter pub cache clean
 
       - name: Build Windows app
         run: cmd /C "chcp 65001 && set PYTHONIOENCODING=utf-8 && set FLET_NO_RICH=1 && flet build windows"
